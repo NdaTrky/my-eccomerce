@@ -1,7 +1,0 @@
-.flex-row {
-  @apply flex justify-center items-center;
-}
-
-.flex-column {
-  @apply flex justify-center items-center flex-col;
-}
