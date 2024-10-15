@@ -1,0 +1,13 @@
+.slider-img {
+    @apply w-[100%] h-[600px] object-cover
+}
+
+
+.slider-content {
+    @apply absolute top-[9rem] left-1/2 transform -translate-x-1/2 text-center flex flex-col gap-[20px] text-white;
+  }
+
+
+  .slider-title {
+    @apply text-[58px] font-bold leading-[80px] tracking-[0.2px] text-center
+  }

@@ -16,15 +16,9 @@ export default {
         lightGray: "#BDBDBD",
         green:"#23856D",
         red: "#E74040",
-
-
-
-
       },
       fontFamily: {
-        aleo: ['Aleo', 'serif'],
-        opensans: ['Open Sans', 'sans-serif'],
-        montserrat: ["montserrat", "sans-serif"]
+       montserrat: ["montserrat", "sans-serif"]
       },
   },
   plugins: [],
