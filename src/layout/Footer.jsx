@@ -1,5 +1,6 @@
 import React from 'react';
-import Button from "../components/Button";
+import { Button } from '../components/ui/button';
+
 
 const footerContent = {
   heading: "Consulting Agency For Your Business",
@@ -45,6 +46,7 @@ function Footer() {
       <div>
         <h3 className="text-[24px]">{footerContent.heading}</h3>
         <p>{footerContent.subheading}</p>
+        <Button size="sm" variant="secondary">Contact Us</Button>
       </div>
 
       
@@ -53,6 +55,7 @@ function Footer() {
           
           <div key={index} className="footer-section">
             <h4 className="text-[16px]">{section.title}</h4>
+            
             <ul className="footer-section">
               {section.items.map((item, itemIndex) => {
                
@@ -71,6 +74,7 @@ function Footer() {
                 );
               })}
             </ul>
+            
           </div>
         ))}
       </div>

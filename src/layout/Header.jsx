@@ -4,7 +4,8 @@ import {Navigation, Pagination, Autoplay} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Button from "../components/Button";
+import { Button } from '../components/ui/button';
+
 
 
 const navLinks = [
@@ -95,7 +96,7 @@ function Header() {
         <div className='slider-content'>
         <h1 className='slider-title'>{sliderTitle.title}</h1>
         <p>{sliderTitle.text}</p>
-        <Button text="Start Now" />
+        <Button size="default" variant="secondary">Start Now</Button>
         </div>
         </div>
 
@@ -109,7 +110,7 @@ function Header() {
         <div className='slider-content'>
         <h1 className="slider-title">{sliderTitle.title}</h1>
         <p>{sliderTitle.text}</p>
-        <Button text="Start Now" />
+        <Button size="default" variant="secondary">Start Now</Button>
         </div>
         </div>
         </SwiperSlide>
