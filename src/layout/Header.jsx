@@ -8,14 +8,14 @@ import Button from "../components/Button";
 
 
 const navLinks = [
-  { href: "#", text: "Home" },
-  { href: "#", text: "Shop" },
-  { href: "#", text: "About" },
-  { href: "#", text: "Blog" },
-  { href: "#", text: "Contact" },
-  { href: "#", text: "Pages" },
+  { id:0, href: "#", text: "Home" },
+  { id:1, href: "#", text: "Shop" },
+  { id:2, href: "#", text: "About" },
+  { id:3, href: "#", text: "Blog" },
+  { id:4, href: "#", text: "Contact" },
+  { id:5, href: "#", text: "Pages" },
 ];
-
+ 
 
 const sliderTitle = {
   title: ["GROCERIES DELIVERY"],
@@ -26,17 +26,16 @@ const sliderTitle = {
 
 function Header() {
 
-const handleButtonClick = () => {
-  alert("Button clicked!")
-}
+
+
+
+
 
   return (
     <header className='font-bold'>
-      {/* Mobile Navbar */}
-      <div className="md:hidden"> 
-        {/* Logo ve İkonlar */}
-        <div className="flex justify-between items-center">
 
+      <div className="md:hidden"> {/* Bu kısım orta/üst boyutlarda gizlenir. Yani, mobil uyumluluk için kullanılır. */}
+         <div className="flex justify-between items-center"> {/* Mobil başlıkta logo ve ikonları düzenlemek için Flexbox kullandım. */}
           <a className="text-2xl" href="#">Bandage</a>
           
           <div className="flex items-center gap-5">
@@ -49,9 +48,9 @@ const handleButtonClick = () => {
 
         {/* Navigasyon Linkleri (Dikey Liste) */}
         <div>
-          <ul className="flex flex-col items-center text-gray">
+          <ul className="flex flex-col items-center text-gray"> {/* Mobil görünümde navbarların dikey olarak hizalanmasını sağlar.*/}
             {navLinks.map((link) => (
-              <li key={link.text} className="my-2">
+              <li key={link.id} className="my-2">
                 <a href={link.href}>{link.text}</a>
               </li>
             ))}
@@ -60,17 +59,19 @@ const handleButtonClick = () => {
       </div>
 
       {/* Web Navbar */}
-      <div className="hidden md:flex justify-between items-center px-6">
+      <div className="hidden md:flex justify-between items-center px-6"> {/*Bu kısım orta ve üst boyutlarda görünür olacak web navigasyon barını içerir. */}
+
         <a className="text-2xl" href="#">Bandage</a>
-        <ul className="flex items-center gap-8 text-gray">
+
+        <ul className="flex items-center gap-8 text-gray"> {/* Navigasyon bağlantılarını yatay olarak düzenler. */}
           {navLinks.map((link) => (
             <li key={link.text}>
-              <a href={link.href} className="hover:text-blue-500">{link.text}</a>
+              <a href={link.href}>{link.text}</a>
             </li>
           ))}
         </ul>
         <div className="text-blue flex items-center gap-5">
-          <a className="font-bold" href="#">Login / Register <i className="fa-regular fa-user"></i></a>
+          <a href="#">Login / Register <i className="fa-regular fa-user"></i></a>
           <a href="#"><i className="fa-solid fa-magnifying-glass"></i></a>
           <a href="#"><i className="fa-solid fa-cart-shopping"></i></a>
         </div>
@@ -79,12 +80,11 @@ const handleButtonClick = () => {
       <Swiper
       // install Swiper modules
       modules={[Navigation, Pagination, Autoplay]}
-      spaceBetween={30}
       slidesPerView={1}
       navigation
       pagination={{ clickable: true }}
-      autoplay={{ delay: 3000 }}
-      className='my-6'
+      autoplay={{ delay: 6000 }}
+      className='my-5'
      
     >
       <SwiperSlide>
@@ -95,7 +95,7 @@ const handleButtonClick = () => {
         <div className='slider-content'>
         <h1 className='slider-title'>{sliderTitle.title}</h1>
         <p>{sliderTitle.text}</p>
-        <Button text="Start Now" onClick={handleButtonClick} />
+        <Button text="Start Now" />
         </div>
         </div>
 
@@ -109,7 +109,7 @@ const handleButtonClick = () => {
         <div className='slider-content'>
         <h1 className="slider-title">{sliderTitle.title}</h1>
         <p>{sliderTitle.text}</p>
-        <Button text="Start Now" onClick={handleButtonClick} />
+        <Button text="Start Now" />
         </div>
         </div>
         </SwiperSlide>

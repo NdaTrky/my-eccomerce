@@ -12,4 +12,3 @@ function Button({text, onClick}) {
 
 export default Button
 
-// w-[92px] h-[42px] top-[17px] left-[17px] p-[10px] px-[20px] gap-[10px] rounded-tl-[5px] rounded-br-[0px] rounded-bl-[0px] rounded-tr-[0px] opacity-0 absolute

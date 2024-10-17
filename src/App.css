@@ -11,3 +11,17 @@
   .slider-title {
     @apply text-[58px] font-bold leading-[80px] tracking-[0.2px] text-center
   }
+
+
+  .footer-container {
+    @apply bg-[#252B42] text-white flex flex-col px-[5rem] py-[3rem] font-bold
+  }
+
+
+  .footer-content {
+    @apply items-center grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-5 py-[5rem]
+  }
+
+.footer-section {
+  @apply flex flex-col gap-4
+}
