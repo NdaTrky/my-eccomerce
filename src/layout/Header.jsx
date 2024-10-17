@@ -26,12 +26,6 @@ const sliderTitle = {
 }
 
 function Header() {
-
-
-
-
-
-
   return (
     <header className='font-bold'>
 
@@ -89,7 +83,7 @@ function Header() {
      
     >
       <SwiperSlide>
-      <div className='slider-container'>
+      <div>
         <img className="slider-img"
         src={sliderTitle.sliderOne} 
         alt="sliderOne" />
@@ -103,7 +97,7 @@ function Header() {
       </SwiperSlide>
       
       <SwiperSlide>
-        <div className='slider-container'>
+        <div>
         <img className="slider-img"
         src={sliderTitle.sliderTwo}
         alt="sliderTwo" />

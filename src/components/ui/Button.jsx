@@ -18,7 +18,7 @@ const buttonVariants = cva(
       },
       size: {
         default: "h-14 flex items-center justify-end px-4 mx-auto",
-        sm: "h-14 flex flex-row-reverse items-center px-4 mr-0",
+        sm: "h-14 flex flex-row-reverse items-center px-4 ml-auto",
         lg: "h-10 rounded-md px-8 ml-4",
         icon: "h-9 w-9",
       },
