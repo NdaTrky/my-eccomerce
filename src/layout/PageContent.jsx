@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductCard from '../components/ProductCard'; 
+import ProductCard from '../components/ui/ProductCard'; 
 
 const products = [
   {
@@ -25,7 +25,7 @@ const products = [
 
 const ProductList = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div className="bg-[#FAFAFA] p-6 pt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {products.map((product, index) => (
         <ProductCard
           key={index}

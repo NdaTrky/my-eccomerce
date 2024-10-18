@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductCard = ({ image, title, description, text }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md my-6 mx-6 flex flex-row-reverse items-center">
+    <div className="bg-white my-6 mx-6 flex flex-row-reverse items-center">
       <img 
         src={image} 
         alt={title} 
