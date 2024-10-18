@@ -7,6 +7,7 @@ import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import PageContent from "./layout/PageContent";
 import {register } from "swiper/element/bundle";
+import HomePages from "./pages/HomePages";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Header />
       <PagesContainer>
       <PageContent/>
+      <HomePages/>
       </PagesContainer>
       <Footer/>
       
