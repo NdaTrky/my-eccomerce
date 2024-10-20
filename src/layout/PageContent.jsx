@@ -28,20 +28,20 @@ const ProductList = () => {
       {products.map((product, index) => (
         <div 
           key={index} 
-          className="flex items-start bg-white p-4 m-4"
+          className="flex flex-row-reverse items-start bg-white p-4 m-4"
         >
           {/* Kartın Görseli */}
           <img 
             src={product.image} 
             alt={product.title} 
-            className="w-32 h-32 object-cover rounded-md mr-4" 
+            className="w-32 h-32 object-cover rounded-md ml-4" 
           />
 
           {/* Kart İçeriği */}
           <div>
             <p>{product.description}</p>
             <h3 className="text-lg font-bold">{product.title}</h3>
-           <p>{product.text}</p>
+            <p>{product.text}</p>
           </div>
         </div>
       ))}
