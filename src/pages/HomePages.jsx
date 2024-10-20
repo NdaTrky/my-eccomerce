@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductCard from '../components/ui/ProductCard';
+import Brand from '@/components/ui/Brand';
 
 const products = [
   { image: '/card1.png', title: 'Graphic Design', oldPrice: '$16.48' , newPrice: '$6.48' },
@@ -145,9 +146,40 @@ function HomePages() {
     <img src="/colimg2.png" alt="Description" className="object-cover" />
   </div>
 </div>
-        </div>
 
-      
+{/* MOST POPULAR Bölümü */}
+<div className="flex md:flex-row bg-gray-100 bg-[#FAFAFA]">
+<div className="md:w-1/2 flex flex-col justify-center items-center"> 
+    <div className="grid grid-cols-1 gap-4 text-center"> 
+      {popularProducts.map((popularProduct, index) => (
+        <div key={index} className='ml-5 flex flex-col items-center'>
+          <h3 className="text-lg font-bold">{popularProduct.heading}</h3>
+          <p>{popularProduct.description}</p>
+          <ProductCard
+            image="/card5.png"
+            title={popularProduct.title}
+            oldPrice={popularProduct.oldPrice}
+            newPrice={popularProduct.newPrice}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+  <div className="md:w-1/2 flex justify-center items-center">
+    <img src="/colimg3.png" alt="Delivery" className="object-cover" />
+  </div>
+
+  
+</div>
+
+<Brand/>
+
+
+
+
+</div>
+
+    
       
       
    
