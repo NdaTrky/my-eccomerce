@@ -10,6 +10,7 @@ import { register } from "swiper/element/bundle";
 import HomePages from "./pages/HomePages";
 import ShopPages from "./pages/ShopPages";
 import Slider from "./components/ui/Slider";
+import Brand from "./components/ui/Brand";
 
 function App() {
   register();
@@ -19,13 +20,13 @@ function App() {
         <MyComponent />
         <ToastContainer />
         <Header />
-        <Slider />
         <PagesContainer>
           <Routes>
             <Route path="/" element={<HomePages />} />
             <Route path="/shop" element={<ShopPages />} />
           </Routes>
         </PagesContainer>
+        <Brand/>
         <Footer />
       </div>
     </Router>

@@ -10,11 +10,11 @@ const ProductCard = ({ image, title, description, text, oldPrice, newPrice, head
       <div>
         {heading && <h2 className="text-lg font-bold">{heading}</h2>}
         <p className="text-sm">{description}</p>
-        <h3 className="text-base font-semibold">{title}</h3>
+        <h3 className="shop-title">{title}</h3>
         <p>{text}</p>
-        <div className='font-bold flex gap-2'>
-          <span className="text-gray line-through">{oldPrice}</span>
-          <span className="text-green">{newPrice}</span>
+        <div className='price-wrapper'>
+          <span className="price-old">{oldPrice}</span>
+          <span className="price-new">{newPrice}</span>
         </div>
       </div>
     </div>

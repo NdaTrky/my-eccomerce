@@ -54,8 +54,11 @@ const topProducts = [
 ];
 function HomePages() {
   return (
+  
     <div className="flex flex-col space-y-12 my-8 min-h-screen">
-      
+     <div className="w-full">
+    <Slider />
+    </div>
     
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {topProducts.map((product, index) => (
@@ -70,18 +73,18 @@ function HomePages() {
       </div>
       {/* BESTSELLER PRODUCTS Bölümü */}
       <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/3 bg-yellow-400 p-6">
+        <div className="md:w-1/3 bg-yellow-400">
           <h2 className="text-xl font-bold mb-2">FURNITURE</h2>
-          <p className="text-gray-600 mb-4">5 Items</p>
-          <img src="/colimg.png" alt="Furniture" className="object-cover w-full" />
+          <p className="text">5 Items</p>
+          <img src="/colimg.png" alt="Furniture" className="object-cover w-full pt-16" />
         </div>
 
         <div className="md:w-2/3 px-4">
           <h2 className="text-lg font-bold mb-4">BESTSELLER PRODUCTS</h2>
           <div className="flex flex-wrap justify-between mb-4">
-            <button className="card-button">Men</button>
-            <button className="card-button">Women</button>
-            <button className="card-button">Accessories</button>
+            <button className="text">Men</button>
+            <button className="text">Women</button>
+            <button className="text">Accessories</button>
             <a href="#" className="hidden md:inline"><i className="fa-solid fa-arrow-left"></i></a>
             <a href="#" className="hidden md:inline"><i className="fa-solid fa-arrow-right"></i></a>
           </div>
@@ -142,9 +145,9 @@ function HomePages() {
         <div className="flex-1">
           <h2 className="text-lg font-bold mb-4">BESTSELLER PRODUCTS</h2>
           <div className="flex flex-wrap justify-between mb-4">
-            <button className="card-button">Men</button>
-            <button className="card-button">Women</button>
-            <button className="card-button">Accessories</button>
+            <button className="text">Men</button>
+            <button className="text">Women</button>
+            <button className="text">Accessories</button>
             <a href="#" className="hidden md:inline"><i className="fa-solid fa-arrow-left"></i></a>
             <a href="#" className="hidden md:inline"><i className="fa-solid fa-arrow-right"></i></a>
           </div>
@@ -163,8 +166,8 @@ function HomePages() {
         </div>
 
         {/* Sağ Taraf için Resim */}
-        <div className="md:w-1/3 flex justify-center items-center mt-4 md:mt-0">
-          <img src="/colimg2.png" alt="Description" className="object-cover w-full md:w-auto" />
+        <div className="md:w-1/3 flex">
+          <img src="/colimg2.png" alt="Description" className="object-cover w-full" />
         </div>
       </div>
 
@@ -202,8 +205,7 @@ function HomePages() {
  
 
       {/* Markalar Bölümü */}
-      <Brand />
-
+    
     
             
 

@@ -11,19 +11,18 @@ const Brand = () => {
   ];
 
   return (
-    <div className="flex flex-wrap justify-between gap-4 py-6">
-      {brands.map((brand, index) => (
-        <div
-          key={index}
-          className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-auto flex justify-center"
-        >
-          <img
-            src={brand.image}
-            alt={brand.name}
-            className="object-contain w-24 h-12"
-          />
-        </div>
-      ))}
+    <div className="py-8">
+      <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-28 m-4">
+        {brands.map((brand, index) => (
+          <div key={index} className="flex justify-center">
+            <img
+              src={brand.image}
+              alt={brand.name}
+              className="object-contain h-12"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

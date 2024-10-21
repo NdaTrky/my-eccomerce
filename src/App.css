@@ -9,12 +9,12 @@
 
 
   .slider-title {
-    @apply text-[58px] font-bold leading-[80px] tracking-[0.2px] text-center
+    @apply text-[58px] font-bold tracking-[0.2px] text-center
   }
 
 
   .footer-container {
-    @apply bg-[#252B42] text-white flex flex-col px-[5rem] py-[3rem] font-bold
+  @apply bg-[#252B42] text-white flex flex-col px-[5rem] py-[3rem] font-bold
   }
 
 
@@ -31,6 +31,22 @@
 }
 
 
-.card-button {
-  @apply text-sm text-gray font-bold hover:text-blue
+.shop-title {
+  @apply font-bold leading-6 tracking-wide text-sm
+}
+
+.price-wrapper {
+  @apply font-bold flex gap-2;
+}
+
+.price-old {
+  @apply text-gray line-through;
+}
+
+.price-new {
+  @apply text-green;
+}
+
+.text {
+  @apply text-sm font-bold text-gray
 }
