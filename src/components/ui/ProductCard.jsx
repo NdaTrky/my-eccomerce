@@ -6,7 +6,7 @@ const ProductCard = ({ image, title, description, text, oldPrice, newPrice, head
       <img 
         src={image} 
         alt={title} 
-        className={`object-cover w-full ${isLarge ? 'h-80' : 'h-48'}`} /> 
+        className={`object-cover ${isLarge ? 'h-80' : 'h-48'}`} /> 
       <div>
         {heading && <h2 className="text-lg font-bold">{heading}</h2>}
         <p className="text-sm">{description}</p>

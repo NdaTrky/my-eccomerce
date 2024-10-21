@@ -11,14 +11,18 @@ const Brand = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center py-6">
+    <div className="flex flex-wrap justify-between gap-4 py-6">
       {brands.map((brand, index) => (
-        <img
+        <div
           key={index}
-          src={brand.image}
-          alt={brand.name}
-          
-        />
+          className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-auto flex justify-center"
+        >
+          <img
+            src={brand.image}
+            alt={brand.name}
+            className="object-contain w-24 h-12"
+          />
+        </div>
       ))}
     </div>
   );
