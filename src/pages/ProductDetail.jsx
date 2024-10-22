@@ -25,8 +25,8 @@ function ProductDetail() {
         <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
         <p className="text-gray-600 mb-4">{product.description}</p>
         <div className="flex items-center gap-4 mb-4">
-          <span className="text-2xl font-bold text-blue-600">{product.price}</span>
-          <span className="text-gray-500 line-through">{product.originalPrice}</span>
+          <span className="price-new text-2xl font-bold text-blue-600">{product.price}</span>
+          <span className="price-old text-gray-500 line-through">{product.originalPrice}</span>
         </div>
         <div className="flex gap-2 mb-4">
           {product.colors.map((color, index) => (
