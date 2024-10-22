@@ -4,7 +4,7 @@ import React from 'react';
 // Ortak navbar linkleri
 const navLinks = [
   { id: 0, to: "/", text: "Home" },
-  { id: 1, to: "/shop", text: "Shop" }, // "/ShopPages" yerine "/shop" kullanın
+  { id: 1, to: "/shop", text: "Shop" },
   { id: 2, to: "/about", text: "About" },
   { id: 3, to: "/blog", text: "Blog" },
   { id: 4, to: "/contact", text: "Contact" },
@@ -13,7 +13,7 @@ const navLinks = [
 
 function Header() {
   return (
-    <header>
+    <header className="font-bold pt-2">
       {/* Mobil Navbar */}
       <div className="md:hidden">
         <div className="flex justify-between items-center">
