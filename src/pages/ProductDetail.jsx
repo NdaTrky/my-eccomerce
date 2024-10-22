@@ -5,8 +5,7 @@ import { useParams } from 'react-router-dom';
 function ProductDetail() {
   const { id } = useParams();
 
-  // Burada ürün verilerini id'ye göre çekme işlemi yapılacak
-  // Şimdilik örnek veri kullanacağız
+  // Burada ilerleyen t-? aşamalarında ürün verilerini id'ye göre çekme işlemi yapılacak.
   const product = {
     id: id,
     imageUrl: "/shopimg.png",
