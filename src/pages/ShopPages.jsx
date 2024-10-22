@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/Button';
 import React from 'react';
+import {Link } from "react-router-dom";
 
 const shops = [
   {
@@ -9,6 +10,7 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
   {
     id: 2,
@@ -17,6 +19,7 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
   {
     id: 3,
@@ -25,6 +28,7 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
   {
     id: 4,
@@ -33,6 +37,7 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
   {
     id: 5,
@@ -41,6 +46,7 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
   {
     id: 6,
@@ -49,6 +55,7 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
   {
     id: 7,
@@ -57,6 +64,7 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
   {
     id: 8,
@@ -65,6 +73,7 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
   {
     id: 9,
@@ -73,6 +82,7 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
   {
     id: 10,
@@ -81,6 +91,7 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
   {
     id: 11,
@@ -89,6 +100,7 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
   {
     id: 12,
@@ -97,12 +109,13 @@ const shops = [
     price: "$6.48",
     originalPrice: "$15.49",
     description: "English Department",
+    colors: ['#4CAF50', '#FFC107', '#F44336']
   },
 ];
 
 function ShopPages() {
   return (
-     <div className="container mx-auto p-6">
+     <div className="my-8">
       {/* Yeni Kart Düzeni (Sayfanın Üst Kısmında) */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-4">Shop</h1>
@@ -112,7 +125,7 @@ function ShopPages() {
               <img
                 src={shop.imageUrl}
                 alt={shop.title}
-                className="w-full h-full object-cover rounded-lg"
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white">
                 <div className="text-center">
@@ -148,21 +161,31 @@ function ShopPages() {
     </div>
       <div className="card-grid lg:grid-cols-4 gap-4">
         {shops.map((shop) => (
-          <div key={shop.id} className="bg-white p-4">
-            <img src={shop.imageUrl} alt={shop.title} className='w-full h-48 object-cover mb-4'/>
+          <Link to={`/product/${shop.id}`} key={shop.id} className="bg-white p-4">
+            <img src={shop.imageUrl} alt={shop.title} className='w-full object-cover mb-4'/>
             <div>
               <h2 className="shop-title text-lg font-semibold">{shop.title}</h2>
               <div className="price-wrapper flex justify-between mt-2">
                 <p className='price-old text-gray-500 line-through'>{shop.originalPrice}</p>
                 <p className='price-new text-blue-600 font-bold'>{shop.price}</p>
               </div>
-              <p className='text mt-2'>{shop.description}</p>
+              <p className='text mt-'>{shop.description}</p>
+              <div className="flex gap-2 mt-2">
+                {shop.colors.map((color, index) => (
+                  <button key={index} style={{ backgroundColor: color, width: 12, height: 12, borderRadius: '50%' }}></button>
+                ))}
+              </div>
+              
+              
             </div>
-          </div>
+          </Link>
         ))}
       </div>
-     <div className="text-center mt-9 ml-[20rem]">
+      
+      <div className="flex text-center"> 
+     <a href="#" >
         <img src="/Pagination.png" alt="" />
+    </a>
       </div>
     </div>
   );

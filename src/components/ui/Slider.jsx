@@ -15,7 +15,7 @@ const sliderTitle = {
 
 function Slider() {
   return (
-    <nav className='font-bold w-[100%] m-0 p-0'>
+    <div className='font-bold'>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         slidesPerView={1}
@@ -46,7 +46,7 @@ function Slider() {
           </div>
         </SwiperSlide>
       </Swiper>
-    </nav>
+    </div>
   );
 }
 
