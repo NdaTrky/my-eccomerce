@@ -11,6 +11,8 @@ import ShopPages from "./pages/ShopPages";
 import Slider from "./components/ui/Slider";
 import Brand from "./components/ui/Brand";
 import AboutPages from "./pages/AboutPages";
+import ProductDetail from "./pages/ProductDetail";
+
 //TODO : PagesContainer kullanımı olmamalı. 
 function App() {
   register();
@@ -23,6 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePages />} />
             <Route path="/shop" element={<ShopPages />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
           </Routes>
         </main>
         <Brand/>
