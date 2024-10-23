@@ -1,21 +1,13 @@
 import React from 'react';
 
-const ProductCard = ({ image, title, description, text, oldPrice, newPrice, heading, isLarge }) => {
+const ProductCard = ({ image, title, oldPrice, newPrice }) => {
   return (
-    <div className="bg-white">
-      <img 
-        src={image} 
-        alt={title} 
-        className={`object-cover ${isLarge ? 'h-80' : 'h-48'}`} /> 
-      <div>
-        {heading && <h2 className="text-lg font-bold">{heading}</h2>}
-        <p className="text-sm">{description}</p>
-        <h3 className="shop-title">{title}</h3>
-        <p>{text}</p>
-        <div className='price-wrapper'>
-          <span className="price-old">{oldPrice}</span>
-          <span className="price-new">{newPrice}</span>
-        </div>
+    <div className="flex flex-col items-center">
+      <img src={image} alt={title} className="w-full h-64 object-cover mb-4" />
+      <h3 className="text-base font-bold text-center mb-2">{title}</h3>
+      <div className="flex gap-2">
+        <span className="price-old line-through">{oldPrice}</span>
+        <span className="price-new">{newPrice}</span>
       </div>
     </div>
   );

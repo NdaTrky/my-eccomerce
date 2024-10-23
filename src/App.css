@@ -40,11 +40,11 @@
 }
 
 .price-old {
-  @apply text-gray line-through;
+  @apply text-gray line-through font-bold;
 }
 
 .price-new {
-  @apply text-green;
+  @apply text-green font-bold;
 }
 
 .text {

@@ -1,22 +1,24 @@
 import React from 'react';
 import ProductCard from '../components/ui/ProductCard';
 import Brand from '@/components/ui/Brand';
-import Slider from '@/components/ui/Slider'
-//TODO : Slider yapısını düzenle!
+import Slider from '@/components/ui/Slider';
+import BestsellerSection from  '@/components/ui/BestsellerSection';
+import { Button } from '@/components/ui/Button';
+
 
 const products = [
-  { image: '/card1.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
-  { image: '/card2.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
-  { image: '/card3.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
-  { image: '/card1.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
-  { image: '/card2.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
-  { image: '/card3.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
+  { image: '/s-card1.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
+  { image: '/s-card2.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
+  { image: '/s-card3.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
+  { image: '/s-card4.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
+  { image: '/s-card5.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
+  { image: '/s-card6.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
 ];
 
 const popularProducts = [
   {
-    title: 'Fresh Meat',
-    image: '/card4.png',
+    title: 'Woman in the Window Vintage Art',
+    image: '/s-h1.png',
     oldPrice: '$20.00',
     newPrice: '$15.00',
     heading: 'MOST POPULAR',
@@ -48,157 +50,134 @@ const featuredProducts = [
 ];
 
 const topProducts = [
-  { image: '/card1.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
-  { image: '/card2.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
-  { image: '/card3.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
+  { image: '/s-c1.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
+  { image: '/s-c2.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
+  { image: '/s-c3.png', title: 'Graphic Design', oldPrice: '$16.48', newPrice: '$6.48' },
 ];
 
-  function HomePages() {
-    return (
-      <div className="space-y-12 my-8 container mx-auto px-4">
-        <div className="w-full">
-          <Slider />  
-        </div>
-      
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {topProducts.map((product, index) => (
-            <ProductCard
-              key={index}
-              image={product.image}
-              title={product.title}
-              oldPrice={product.oldPrice}
-              newPrice={product.newPrice}
-            />
-          ))}
-        </div>
-  
-        {/* BESTSELLER PRODUCTS Bölümü */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-yellow-400 p-6 flex flex-col justify-between">
-            <div>
-              <h2 className="text-xl font-bold mb-2">FURNITURE</h2>
-              <p className="text">5 Items</p>
-            </div>
-            <img src="/colimg.png" alt="Furniture" className="object-cover w-full mt-4" />
+const featuredPosts = [
+  {
+    image: '/card-a1.png',
+    tag: 'NEW',
+    title: 'Loudest à la Madison #1 (L\'integral)',
+    description: 'We focus on ergonomics and meeting you where you work. Its only a keystroke away.',
+    date: '22 April 2021',
+    comments: 10,
+  },
+  {
+    image: '/card-a2.png',
+    tag: 'NEW',
+    title: 'Loudest à la Madison #2 (L\'integral)',
+    description: 'We focus on ergonomics and meeting you where you work. Its only a keystroke away.',
+    date: '22 April 2021',
+    comments: 10,
+  },
+  {
+    image: '/card-a3.png',
+    tag: 'NEW',
+    title: 'Loudest à la Madison #3 (L\'integral)',
+    description: 'We focus on ergonomics and meeting you where you work. Its only a keystroke away.',
+    date: '22 April 2021',
+    comments: 10,
+  },
+];
+
+
+function HomePages() {
+  return (
+    <div>
+      <Slider />
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        <div className="my-16 space-y-16">
+          {/* Top Products */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {topProducts.map((product, index) => (
+              <ProductCard key={index} {...product} />
+            ))}
           </div>
-  
-          <div className="md:col-span-2">
-            <h2 className="text-lg font-bold mb-4">BESTSELLER PRODUCTS</h2>
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex space-x-4">
-                <button className="text">Men</button>
-                <button className="text">Women</button>
-                <button className="text">Accessories</button>
+
+          {/* Bestseller Products */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-yellow-400 p-8 flex flex-col justify-between">
+              <div>
+                <h2 className="text-2xl font-bold mb-2">FURNITURE</h2>
+                <p className="text-sm font-bold">5 Items</p>
               </div>
-              <div className="hidden md:flex space-x-2">
-                <a href="#"><i className="fa-solid fa-arrow-left"></i></a>
-                <a href="#"><i className="fa-solid fa-arrow-right"></i></a>
-              </div>
+              <img src="/s-col1.png" alt="Furniture" className="bg-[transparent]" />
             </div>
-  
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {products.slice(0, 6).map((product, index) => (
-                <ProductCard
-                  key={index}
-                  image={product.image}
-                  title={product.title}
-                  oldPrice={product.oldPrice}
-                  newPrice={product.newPrice}
-                />
+            <BestsellerSection products={products} />
+          </div>
+
+          {/* Most Popular */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-gray-100">
+            <img src="/s-col3.png" alt="Delivery" className="w-full h-full object-cover" />
+            <div className="flex flex-col justify-center items-center p-8">
+              {popularProducts.map((product, index) => (
+                <div key={index} className="text-center max-w-md">
+                  <h3 className="text-xl font-bold mb-4">{product.heading}</h3>
+                  <p className="mb-6">{product.description}</p>
+                  <ProductCard {...product} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Featured Products */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {featuredProducts.map((product, index) => (
+              <div key={index} className="p-4">
+                <h3 className="text-4xl font-bold text-red-500 mb-2">{product.number}</h3>
+                <h4 className="text-lg font-bold mb-2">{product.title}</h4>
+                <p className="text-sm text-gray-600">{product.text}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* İkinci Bestseller Products */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <BestsellerSection products={products} />
+            <img src="/s-col2.png" alt="Description" className="w-full h-full object-cover" />
+          </div>
+
+          {/* İkinci Most Popular */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-gray-100">
+            <div className="flex flex-col justify-center items-center p-8">
+              {popularProducts.map((product, index) => (
+                <div key={index} className="text-center max-w-md">
+                  <h3 className="text-xl font-bold mb-4">{product.heading}</h3>
+                  <p className="mb-6">{product.description}</p>
+                  <ProductCard image="/card5.png" {...product} />
+                </div>
+              ))}
+            </div>
+            <img src="/s-col3.png" alt="Delivery" className="w-full h-full object-cover" />
+          </div>
+
+          {/* Featured Posts */}
+          <div className="space-y-8">
+            <h2 className="text-2xl font-bold text-center">Featured Posts</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {featuredPosts.map((post, index) => (
+                <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
+                  <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
+                  <div className="p-6">
+                    <span className="inline-block bg-blue-500 text-white text-xs px-2 py-1 rounded-full mb-2">{post.tag}</span>
+                    <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
+                    <p className="text-gray-600 mb-4">{post.description}</p>
+                    <div className="flex justify-between text-sm text-gray-500">
+                      <span>{post.date}</span>
+                      <span>{post.comments} comments</span>
+                    </div>
+                    <Button size="sm" variant="destructiveghost">Popularıty</Button>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </div>
-  
-        {/* MOST POPULAR Bölümü */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#FAFAFA]">
-          <div className="flex">
-            <img src="/colimg1.png" alt="Delivery" className="object-cover w-full" />
-          </div>
-  
-          <div className="flex flex-col justify-center items-center p-6">
-            {popularProducts.map((popularProduct, index) => (
-              <div key={index} className="text-center">
-                <h3 className="text-lg font-bold mb-2">{popularProduct.heading}</h3>
-                <p className="mb-4">{popularProduct.description}</p>
-                <ProductCard
-                  image={popularProduct.image}
-                  title={popularProduct.title}
-                  oldPrice={popularProduct.oldPrice}
-                  newPrice={popularProduct.newPrice}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-  
-        {/* FEATURED PRODUCTS Bölümü */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {featuredProducts.map((product, index) => (
-            <div key={index} className="p-4">
-              <h3 className="text-4xl font-bold text-red-500">{product.number}</h3>
-              <h4 className="text-sm font-bold">{product.title}</h4>
-              <p className="text-xs text-gray-500">{product.text}</p>
-            </div>
-          ))}
-        </div>
-  
-        {/* İkinci BESTSELLER PRODUCTS Bölümü */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="md:col-span-2">
-            <h2 className="text-lg font-bold mb-4">BESTSELLER PRODUCTS</h2>
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex space-x-4">
-                <button className="text">Men</button>
-                <button className="text">Women</button>
-                <button className="text">Accessories</button>
-              </div>
-              <div className="hidden md:flex space-x-2">
-                <a href="#"><i className="fa-solid fa-arrow-left"></i></a>
-                <a href="#"><i className="fa-solid fa-arrow-right"></i></a>
-              </div>
-            </div>
-  
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {products.slice(0, 6).map((product, index) => (
-                <ProductCard
-                  key={index}
-                  image={product.image}
-                  title={product.title}
-                  oldPrice={product.oldPrice}
-                  newPrice={product.newPrice}
-                />
-              ))}
-            </div>
-          </div>
-  
-          <div className="flex">
-            <img src="/colimg2.png" alt="Description" className="object-cover w-full" />
-          </div>
-        </div>
-  
-        {/* İkinci MOST POPULAR Bölümü */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#FAFAFA]">
-          <div className="flex flex-col justify-center items-center p-6">
-            {popularProducts.map((popularProduct, index) => (
-              <div key={index} className="text-center">
-                <h3 className="text-lg font-bold mb-2">{popularProduct.heading}</h3>
-                <p className="mb-4">{popularProduct.description}</p>
-                <ProductCard
-                  image="/card5.png"
-                  title={popularProduct.title}
-                  oldPrice={popularProduct.oldPrice}
-                  newPrice={popularProduct.newPrice}
-                />
-              </div>
-            ))}
-          </div>
-          <div className="flex">
-            <img src="/colimg3.png" alt="Delivery" className="object-cover w-full" />
-          </div>
-        </div>
-       </div>
-    );
-  }
-  
-  export default HomePages
+      </div>
+    </div>
+  );
+}
+
+export default HomePages;
