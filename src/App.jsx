@@ -2,13 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PagesContainer from "./container/PagesContainer";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import { register } from "swiper/element/bundle";
 import HomePages from "./pages/HomePages";
 import ShopPages from "./pages/ShopPages";
-import Slider from "./components/ui/Slider";
 import Brand from "./components/ui/Brand";
 import AboutPages from "./pages/AboutPages";
 import ProductDetail from "./pages/ProductDetail";
@@ -29,6 +27,7 @@ function App() {
             <Route path="/shop" element={<ShopPages />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/blog" element={<TeamPage />} /> 
+            <Route path="/about" element={<AboutPages/>} />
             <Route path="/product/:id" element={<ProductDetail />} />
           </Routes>
         </main>
