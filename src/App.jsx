@@ -13,6 +13,7 @@ import Brand from "./components/ui/Brand";
 import AboutPages from "./pages/AboutPages";
 import ProductDetail from "./pages/ProductDetail";
 import ContactPage from "./pages/ContactPage";
+import TeamPage from "./pages/TeamPage";
 
 //TODO : PagesContainer kullanımı olmamalı. 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/" element={<HomePages />} />
             <Route path="/shop" element={<ShopPages />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/blog" element={<TeamPage />} /> 
             <Route path="/product/:id" element={<ProductDetail />} />
           </Routes>
         </main>
