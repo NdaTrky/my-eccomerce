@@ -1,7 +1,7 @@
 import React from 'react';
 import TeamMember, { contactData } from '../components/ui/TeamMember';
 import Brand from '../components/ui/Brand';
-import { Button } from '../components/ui/Button';
+import { Button } from '@/components/ui/button';
 
 function AboutPages() {
   const pageContent = {
