@@ -1,6 +1,6 @@
 import React from 'react';
 import TeamMember, { contactData } from '../components/ui/TeamMember';
-import { Button } from '@/components/ui/button.jsx';
+import { Button } from '@/components/ui/Button';
 function AboutPages() {
   const pageContent = {
     about: {
