@@ -1,8 +1,17 @@
 import { Button } from '@/components/ui/Button';
 import React from 'react';
 import {Link } from "react-router-dom";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
 
-const shops = [
+export const shops = [
   {
     id: 1,
     imageUrl: "/shop1.png",
@@ -216,13 +225,23 @@ function ShopPages() {
         <img src="/Pagination.png" alt="" />
     </a>
       </div>
-      <div class="flex justify-center items-center p-10 font-bold text-gray ">
-    <button class="py-2 px-4 cursor-not-allowed border hover:text-blue rounded">First</button>
-    <button class="py-2 px-4 text-blue-500 hover:bg-gray-200 border hover:text-blue">1</button>
-    <button class="py-2 px-4 bg-blue-500 text-white border">2</button>
-    <button class="py-2 px-4 text-blue-500 hover:text-blue border">3</button>
-    <button class="py-2 px-4 text-blue-50 border hover:text-blue rounded">Next</button>
-</div>
+      <Pagination className="hover:text-blue">
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>
+
 
     </div>
   );
