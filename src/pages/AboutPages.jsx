@@ -8,7 +8,7 @@ function AboutPages() {
     about: {
       title: "ABOUT US",
       description: "We know how large objects will act, but things on a small scale",
-      image: "/aboutus.png",
+      image: "https://i.pinimg.com/originals/c0/5a/61/c05a611855cf5f2e72900f82f43fd288.gif",
       imageAlt: "Alışveriş Yapan Kız"
     },
     trying: {
@@ -24,7 +24,7 @@ function AboutPages() {
     ],
     video: {
       image: "https://i.pinimg.com/originals/cb/b6/ce/cbb6ce30f492e6142377964405e8afe5.gif",
-      imageAlt: "Dağ Gölü"
+      imageAlt: "gramophone gif"
     },
     team: {
       title: "Meet Our Team"
@@ -42,107 +42,117 @@ function AboutPages() {
   };
 
   return (
-    <div className="container mx-auto px-4">
-      {/* Hakkımızda Bölümü */}
-      <section className="py-16 flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 mb-8 md:mb-0 flex flex-col items-start space-y-4">
-          <h1 className="text-4xl font-bold">{pageContent.about.title}</h1>
-          <p className="text text-lg max-w-15">{pageContent.about.description}</p>
-          <div>
-            <Button size="sm" variant="secondary">Get Quote Now</Button>
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 lg:px-8 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <div className="space-y-6">
+            <h1 className="text-5xl font-bold tracking-tight text-gray-900">{pageContent.about.title}</h1>
+            <p className="text-xl text-gray-600 leading-relaxed max-w-xl">{pageContent.about.description}</p>
+            <Button size="lg" variant="secondary" className="mt-4">Get Quote Now</Button>
           </div>
-        </div>
-        <div className="md:w-1/2 flex justify-center">
-          <img 
-            src={pageContent.about.image} 
-            alt={pageContent.about.imageAlt} 
-            className="w-full" 
-            style={{ width: '400px', height: 'auto' }} 
-          />
-        </div>
-      </section>
-
-      {/* Trying Bölümü */}
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-red mb-4">{pageContent.trying.title}</h2>
-          <div className="flex flex-col md:flex-row items-start">
-            <div className="w-full md:w-1/2 md:pr-8 mb-4 md:mb-0">
-              <p className="text-3xl md:text-4xl font-bold">{pageContent.trying.description}</p>
-            </div>
-            <hr className="border-gray-300 w-full md:w-auto md:h-auto my-4 md:my-0 md:mx-8" />
-            <div className="w-full md:w-1/2 md:pl-8">
-              <p className="text-gray-600">{pageContent.trying.text}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* İstatistikler Bölümü */}
-      <section className="py-16 flex flex-col md:flex-row justify-around bg-gray-100">
-        {pageContent.stats.map((stat, index) => (
-          <div key={index} className="text-center mb-4 md:mb-0">
-            <h2 className="text-3xl font-bold">{stat.number}</h2>
-            <p className="text-gray-600">{stat.text}</p>
-          </div>
-        ))}
-      </section>
-
-      {/* Video Bölümü */}
-      <section className="py-16 flex justify-center">
-        <img src={pageContent.video.image} alt={pageContent.video.imageAlt} className="w-full rounded-lg shadow-lg" style={{ width: '500px', height: 'auto' }} />
-        <div className="relative">
-          <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white rounded-full p-4">
-            <i className="fas fa-play"></i>
-          </button>
-        </div>
-      </section>
-
-      {/* Ekibimizle Tanışın Bölümü */}
-      <section className="py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">{pageContent.team.title}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {contactData.teamMembers.slice(0, 3).map((member, index) => (
-            <TeamMember key={index} {...member} />
-          ))}
-        </div>
-      </section>
-
-      {/* Work With Us Bölümü */}
-      <section className="py-12 md:py-24 bg-blue-500 text-white relative">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="relative">
-            {/* Workwithus.png fotoğrafı mobil ve web'de ortak */}
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
             <img 
-              src="/workwithus.png" 
-              alt="Woman in pink sweater" 
-              className="w-full h-auto object-cover"
+              src={pageContent.about.image} 
+              alt={pageContent.about.imageAlt} 
+              className="object-cover w-full h-full"
             />
-            {/* İkinci resim sadece web görünümde */}
-            <div className="hidden md:block absolute top-0 right-0 w-1/3 h-full">
-              <img 
-                src="/workwithus1.png" 
-                alt="Second image" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Yazılar ve Buton - Hem mobil hem de web görünüm için ortak */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center max-w-md md:max-w-sm px-4 md:px-0">
-                <h3 className="text-base md:text-lg font-bold mb-2 md:mb-3">{pageContent.workWithUs.subtitle}</h3>
-                <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">{pageContent.workWithUs.title}</h2>
-                <p className="text-sm md:text-base mb-4 md:mb-6">{pageContent.workWithUs.description}</p>
-                <Button size="sm" variant="secondary">{pageContent.workWithUs.buttonText}</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Trying Section */}
+      <section className="bg-gray-50">
+        <div className="container mx-auto px-4 lg:px-8 py-20">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-blue-600 font-semibold mb-8">{pageContent.trying.title}</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <p className="text-4xl font-bold text-gray-900 leading-tight">{pageContent.trying.description}</p>
+              </div>
+              <div>
+                <p className="text-lg text-gray-600 leading-relaxed">{pageContent.trying.text}</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Büyük Şirketler Bölümü */}
-      <section className="py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">{pageContent.companies.title}</h2>
-        <p className="text text-center">{pageContent.companies.description}</p>
+      {/* Stats Section */}
+      <section className="bg-white">
+        <div className="container mx-auto px-4 lg:px-8 py-20">
+          <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {pageContent.stats.map((stat, index) => (
+              <div key={index} className="text-center space-y-2">
+                <h2 className="text-4xl font-bold text-gray-900">{stat.number}</h2>
+                <p className="text-gray-600 font-medium">{stat.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="bg-gray-50">
+        <div className="container mx-auto px-4 lg:px-8 py-20">
+          <div className="max-w-4xl mx-auto relative aspect-video rounded-2xl overflow-hidden shadow-xl">
+            <img 
+              src={pageContent.video.image} 
+              alt={pageContent.video.imageAlt} 
+              className="w-full h-full object-cover"
+            />
+            <button className="absolute inset-0 m-auto w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+              <i className="fas fa-play text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="bg-white">
+        <div className="container mx-auto px-4 lg:px-8 py-20">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">{pageContent.team.title}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {contactData.teamMembers.slice(0, 3).map((member, index) => (
+                <TeamMember key={index} {...member} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Work With Us Section */}
+      <section className="bg-blue-600">
+        <div className="container mx-auto px-4 lg:px-8 py-20">
+          <div className="max-w-6xl mx-auto relative">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+                <img 
+                  src="https://i.pinimg.com/564x/59/ca/02/59ca02897c6a92247e73c74de636e2f6.jpg" 
+                  alt="Work With Us" 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="text-black space-y-6">
+                <span className="text-sm font-bold tracking-wider">{pageContent.workWithUs.subtitle}</span>
+                <h2 className="text-4xl font-bold">{pageContent.workWithUs.title}</h2>
+                <p className="text opacity-90">{pageContent.workWithUs.description}</p>
+                <Button size="lg" variant="secondary">{pageContent.workWithUs.buttonText}</Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Companies Section */}
+      <section className="bg-white">
+        <div className="container mx-auto px-4 lg:px-8 py-20">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <h2 className="text-4xl font-bold text-gray-900">{pageContent.companies.title}</h2>
+            <p className="text text-gray-600 leading-relaxed">{pageContent.companies.description}</p>
+          </div>
+        </div>
       </section>
     </div>
   );
