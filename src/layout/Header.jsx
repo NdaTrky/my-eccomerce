@@ -8,7 +8,6 @@ const navLinks = [
   { id: 2, to: "/about", text: "About" },
   { id: 3, to: "/blog", text: "Blog" },
   { id: 4, to: "/contact", text: "Contact" },
-  { id: 5, to: "/pages", text: "Pages" },
 ];
 
 function Header() {
@@ -19,7 +18,7 @@ function Header() {
         <div className="flex justify-between items-center">
           <Link className="text-2xl" to="/">Bandage</Link>
           <div className="flex items-center gap-5">
-            <Link to="#"><i className="fa-regular fa-user"></i></Link>
+           <Link to="/login">Login</Link> / <Link to="/register">Register</Link>
             <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
             <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
             <Link to="#"><i className="fa-solid fa-bars"></i></Link>
@@ -49,10 +48,11 @@ function Header() {
           ))}
         </ul>
         <div className="text-blue flex items-center gap-5">
-          <Link to="#">Login / Register <i className="fa-regular fa-user"></i></Link>
-          <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
-          <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
-        </div>
+  <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
+  <Link to="#"><i className="fa-regular fa-user"></i></Link>
+  <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
+  <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
+</div>
       </div>
     </header>
   );

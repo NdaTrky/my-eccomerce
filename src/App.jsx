@@ -12,6 +12,7 @@ import AboutPages from "./pages/AboutPages";
 import ProductDetail from "./pages/ProductDetail";
 import ContactPage from "./pages/ContactPage";
 import TeamPage from "./pages/TeamPage";
+import SignupPage from "./pages/SignupPage";
 
 //TODO : PagesContainer kullanımı olmamalı. 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/blog" element={<TeamPage />} /> 
             <Route path="/about" element={<AboutPages/>} />
             <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/signup" element={<SignupPage />} />
           </Routes>
         </main>
         <Brand/>
