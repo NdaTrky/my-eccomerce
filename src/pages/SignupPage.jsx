@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import  {useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { api } from '@/api';
@@ -24,14 +24,13 @@ function SignupPage() {
   }, []);
 
   const handleRoleChange = (e) => {
-    const selectedRole = parseInt(e.target.value, 10); // role_id'yi sayıya dönüştür
-    setIsStore(selectedRole === 2); // Sadece '3' ID'li mağaza rolü seçildiğinde mağaza alanlarını göster
+    const selectedRole = parseInt(e.target.value, 10);
+    setIsStore(selectedRole === 2);
 
-    // Eğer "Müşteri" rolü seçildiyse, mağaza bilgilerini sıfırla
     if (selectedRole !== 3) {
       reset({ role_id: e.target.value, 'store.name': '', 'store.phone': '', 'store.tax_no': '', 'store.bank_account': '' });
     } else {
-      reset({ role_id: e.target.value }); // Sadece rolü sıfırla
+      reset({ role_id: e.target.value });
     }
   };
 
@@ -61,6 +60,8 @@ function SignupPage() {
       toast.error(error.response?.data?.message || 'Kayıt sırasında bir hata oluştu');
     }
   };
+
+  console.log("SignupPage render ediliyor");
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
@@ -138,7 +139,7 @@ function SignupPage() {
           {errors.role_id && <span className="text-red-500 text-sm">{errors.role_id.message}</span>}
         </div>
 
-        {isStore && ( // Mağaza rolü seçildiğinde bu alanlar gösterilecek
+        {isStore && (
           <>
             <div>
               <label className="block text-sm font-medium mb-1">Mağaza Adı</label>

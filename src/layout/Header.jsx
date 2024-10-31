@@ -18,7 +18,7 @@ function Header() {
         <div className="flex justify-between items-center">
           <Link className="text-2xl" to="/">Bandage</Link>
           <div className="flex items-center gap-5">
-           <Link to="/login">Login</Link> / <Link to="/register">Register</Link>
+           <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
             <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
             <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
             <Link to="#"><i className="fa-solid fa-bars"></i></Link>
@@ -27,14 +27,14 @@ function Header() {
 
         {/* Mobil Navigasyon Linkleri */}
         <div>
-          <ul className="flex flex-col items-center text-gray">
-            {navLinks.map((link) => (
-              <li key={link.id} className="my-2">
-                <Link to={link.to}>{link.text}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+  <ul className="flex flex-col items-center text-gray">
+    {navLinks.map((link) => (
+      <li key={link.id} className="my-2">
+        <Link to={link.to}>{link.text}</Link>
+      </li>
+    ))}
+  </ul>
+</div>
       </div>
 
       {/* Web Navbar */}
