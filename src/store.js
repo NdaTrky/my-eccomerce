@@ -1,7 +1,10 @@
-import { legacy_createStore as createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { thunk } from "redux-thunk";
-import rootReducer from "./reducers"; // Reducer'larınızı buradan içe aktarın
+import { createLogger } from "redux-logger";
+import rootReducer from "./reducers"; // Tüm reducer'ları birleştireceğiz
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const logger = createLogger();
+
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 export default store;
