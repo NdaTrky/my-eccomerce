@@ -1,10 +1,20 @@
-import { createStore, applyMiddleware } from "redux";
-import { thunk } from "redux-thunk";
-import { createLogger } from "redux-logger";
-import rootReducer from "./reducers"; // Tüm reducer'ları birleştireceğiz
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import {thunk} from 'redux-thunk';
+import logger from 'redux-logger';
+import clientReducer from './reducers/clientReducer';
+import productReducer from './reducers/productReducer';
+import shoppingCartReducer from './reducers/shoppingCardReducer';
 
-const logger = createLogger();
+const rootReducer = combineReducers({
+  client: clientReducer,
+  product: productReducer,
+  shoppingCart: shoppingCartReducer,
+});
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
+  applyMiddleware(thunk, logger)
+);
 
 export default store;

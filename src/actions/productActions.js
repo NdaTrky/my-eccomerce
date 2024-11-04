@@ -22,7 +22,7 @@ export const setCategories = (categories) => ({
   export const setLimit = (limit) => ({
     type: 'SET_LIMIT',
     payload: limit,
-  });
+  });4
   
   export const setOffset = (offset) => ({
     type: 'SET_OFFSET',
@@ -36,18 +36,18 @@ export const setCategories = (categories) => ({
   
   // Thunk Action Creator to fetch products
   import axios from 'axios';
-  
-  export const fetchProducts = () => {
+   // Thunk Action Creator to fetch products
+   export const fetchProducts = () => {
     return async (dispatch) => {
-      dispatch(setFetchState('FETCHING'));
-      try {
-        const response = await axios.get('https://dummyjson.com/products');
-        dispatch(setProductList(response.data.products));
-        dispatch(setTotal(response.data.total));
-        dispatch(setFetchState('FETCHED'));
-      } catch (error) {
-        dispatch(setFetchState('FAILED'));
-        console.error(error);
-      }
+        dispatch(setFetchState('FETCHING'));
+        try {
+            const response = await axios.get('https://workintech-fe-ecommerce.onrender.com');
+            dispatch(setProductList(response.data.products));
+            dispatch(setTotal(response.data.total));
+            dispatch(setFetchState('FETCHED'));
+        } catch (error) {
+            dispatch(setFetchState('FAILED'));
+            console.error(error);
+        }
     };
-  };
+};
