@@ -16,17 +16,33 @@ function Header() {
 
   return (
     <header className="font-bold pt-2">
-      {/* Mobil Navbar */}
-      <div className="md:hidden">
-        <div className="flex justify-between items-center">
-          <Link className="text-2xl" to="/">Bandage</Link>
-          <div className="flex items-center gap-5">
-            <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
-            <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
-            <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
-            <Link to="#"><i className="fa-solid fa-bars"></i></Link>
-          </div>
+     {/* Mobil Navbar */}
+<div className="md:hidden">
+  <div className="flex justify-between items-center">
+    <Link className="text-2xl" to="/">Bandage</Link>
+    <div className="flex items-center gap-5">
+      {/* Bu kısmı değiştirin */}
+      {user ? (
+        // Kullanıcı giriş yapmışsa
+        <div className="flex items-center gap-2">
+          <img 
+            src={user.gravatarURL} 
+            alt="Profil" 
+            className="w-8 h-8 rounded-full"
+          />
+          <span className="text-sm">{user.name}</span>
         </div>
+      ) : (
+        // Kullanıcı giriş yapmamışsa
+        <>
+          <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
+        </>
+      )}
+      <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
+      <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
+      <Link to="#"><i className="fa-solid fa-bars"></i></Link>
+    </div>
+  </div>
 
         {/* Mobil Navigasyon Linkleri */}
         <div>
