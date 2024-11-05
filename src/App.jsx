@@ -13,6 +13,7 @@ import ProductDetail from "./pages/ProductDetail";
 import ContactPage from "./pages/ContactPage";
 import TeamPage from "./pages/TeamPage";
 import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
 
 //TODO : PagesContainer kullanımı olmamalı. 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/about" element={<AboutPages/>} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/signup" element={<SignupPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </main>
         <Brand/>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
+import { useSelector } from 'react-redux'; // Redux store'dan veri almak için useSelector'ı içe aktar
 
 // Ortak navbar linkleri
 const navLinks = [
@@ -11,6 +12,8 @@ const navLinks = [
 ];
 
 function Header() {
+  const user = useSelector((state) => state.client.user); // Kullanıcı bilgilerini Redux store'dan al
+
   return (
     <header className="font-bold pt-2">
       {/* Mobil Navbar */}
@@ -18,7 +21,7 @@ function Header() {
         <div className="flex justify-between items-center">
           <Link className="text-2xl" to="/">Bandage</Link>
           <div className="flex items-center gap-5">
-           <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
+            <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
             <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
             <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
             <Link to="#"><i className="fa-solid fa-bars"></i></Link>
@@ -27,14 +30,14 @@ function Header() {
 
         {/* Mobil Navigasyon Linkleri */}
         <div>
-  <ul className="flex flex-col items-center text-gray">
-    {navLinks.map((link) => (
-      <li key={link.id} className="my-2">
-        <Link to={link.to}>{link.text}</Link>
-      </li>
-    ))}
-  </ul>
-</div>
+          <ul className="flex flex-col items-center text-gray">
+            {navLinks.map((link) => (
+              <li key={link.id} className="my-2">
+                <Link to={link.to}>{link.text}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       {/* Web Navbar */}
@@ -48,11 +51,20 @@ function Header() {
           ))}
         </ul>
         <div className="text-blue flex items-center gap-5">
-  <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
-  <Link to="#"><i className="fa-regular fa-user"></i></Link>
-  <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
-  <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
-</div>
+          {user ? ( // Kullanıcı bilgileri varsa göster
+            <>
+              <img src={user.gravatarURL} alt="Profil Resmi" className="w-8 h-8 rounded-full" /> {/* Gravatar resmi */}
+              <span>{user.name}</span> {/* Kullanıcı adı */}
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
+            </>
+          )}
+          <Link to="#"><i className="fa-regular fa-user"></i></Link>
+          <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
+          <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
+        </div>
       </div>
     </header>
   );

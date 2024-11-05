@@ -54,6 +54,7 @@ function SignupPage() {
 
       const response = await api.post('/signup', formData);
       toast.success('Hesabınızı etkinleştirmek için e-postadaki bağlantıya tıklamanız gerekiyor!');
+      console.log(data);
       reset();
       navigate(-1);
     } catch (error) {
