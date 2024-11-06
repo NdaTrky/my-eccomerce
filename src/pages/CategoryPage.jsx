@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductCard from '@/components/ui/ProductCard';
@@ -15,36 +15,26 @@ function CategoryPage() {
     console.log('CategoryPage mounted. FetchState:', fetchState);
     console.log('URL Parameters:', { gender, category });
     
-    if (!products?.length && fetchState !== 'FETCHING') {
+    if (products.length === 0 && fetchState !== 'FETCHING') {
       console.log('Dispatching fetchProducts');
       dispatch(fetchProducts());
     }
-  }, [dispatch, fetchState, products]);
+  }, [dispatch, fetchState, products.length, gender, category]);
+
+  const categoryInfo = useMemo(() => {
+    const categoryCode = `${gender.charAt(0)}:${category}`;
+    return categories.find(cat => cat.code === categoryCode);
+  }, [categories, gender, category]);
+
+  const filteredProducts = useMemo(() => {
+    if (!categoryInfo) return [];
+    return products.filter(product => product && product.category_id === categoryInfo.id);
+  }, [products, categoryInfo]);
 
   useEffect(() => {
-    console.log('Products updated:', products);
-    console.log('Categories:', categories);
-  }, [products, categories]);
-
-  // Kategori ID'sini bul
-  const getCategoryId = () => {
-    if (!categories) return null;
-    const categoryCode = `${gender.charAt(0)}:${category}`; // Örnek: "k:tisort"
-    const foundCategory = categories.find(cat => cat.code === categoryCode);
-    return foundCategory?.id;
-  };
-
-  // Ürünleri filtrele
-  const filteredProducts = products?.filter(product => {
-    // Ürün kontrolü
-    if (!product) return false;
-
-    const categoryId = getCategoryId();
-    console.log('Filtering product:', product);
-    console.log('Looking for categoryId:', categoryId);
-
-    return product.category_id === categoryId;
-  }) || [];
+    console.log('Filtered Products:', filteredProducts);
+    console.log('Category Info:', categoryInfo);
+  }, [filteredProducts, categoryInfo]);
 
   if (fetchState === 'FETCHING') {
     return (
@@ -66,7 +56,7 @@ function CategoryPage() {
             Bu kategoride ürün bulunamadı.
           </p>
           <p className="text-sm text-gray-500 mt-2">
-            (Toplam Ürün Sayısı: {products?.length || 0})
+            (Toplam Ürün Sayısı: {products.length})
           </p>
         </div>
       ) : (
@@ -74,7 +64,7 @@ function CategoryPage() {
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
-              image={product.images?.[0] || '/placeholder.png'}
+              image={product.images?.[0]?.url || '/placeholder.png'}
               title={product.name || 'İsimsiz Ürün'}
               description={product.description || ''}
               oldPrice={product.original_price || ''}
@@ -84,14 +74,13 @@ function CategoryPage() {
         </div>
       )}
 
-      {/* Debug bilgileri - geliştirme aşamasında yardımcı olması için */}
       {process.env.NODE_ENV === 'development' && (
         <div className="mt-8 p-4 bg-gray-100 rounded-lg">
           <h3 className="font-bold mb-2">Debug Bilgileri:</h3>
           <p>Gender: {gender}</p>
           <p>Category: {category}</p>
-          <p>Category ID: {getCategoryId()}</p>
-          <p>Total Products: {products?.length}</p>
+          <p>Category ID: {categoryInfo?.id}</p>
+          <p>Total Products: {products.length}</p>
           <p>Filtered Products: {filteredProducts.length}</p>
         </div>
       )}

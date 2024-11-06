@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../actions/userActions';
 
@@ -9,42 +9,23 @@ function Header() {
   const categories = useSelector((state) => state.product.categories);
   const [isShopMenuOpen, setIsShopMenuOpen] = useState(false);
 
-  useEffect(() => {
-    console.log("Categories in Header:", categories);
-  }, [categories]);
-
-  // Kategorileri cinsiyet bazında grupla
   const groupedCategories = useMemo(() => {
     if (!categories || categories.length === 0) {
-      console.log("No categories available");
       return {};
     }
     
     return categories.reduce((acc, category) => {
-      // Kategori kodunu parçala (örn: "k:tisort" -> { gender: "k", category: "tisort" })
-      const [gender, categoryName] = category.code.split(':');
+      const genderName = category.gender === 'k' ? 'Kadın' : 'Erkek';
       
-      // Cinsiyet kodunu tam isme çevir
-      const genderName = gender === 'k' ? 'Kadın' : 'Erkek';
-      
-      // Eğer bu cinsiyet için array yoksa oluştur
       if (!acc[genderName]) {
         acc[genderName] = [];
       }
       
-      // Kategoriyi ilgili cinsiyet array'ine ekle
-      acc[genderName].push({
-        ...category,
-        categoryName: categoryName // URL için kullanılacak kategori adı
-      });
+      acc[genderName].push(category);
       
       return acc;
     }, {});
   }, [categories]);
-
-  useEffect(() => {
-    console.log("Grouped Categories:", groupedCategories);
-  }, [groupedCategories]);
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -66,21 +47,26 @@ function Header() {
             </button>
             
             {isShopMenuOpen && Object.keys(groupedCategories).length > 0 && (
-              <div className="absolute top-full left-0 w-48 bg-white shadow-lg rounded-md mt-1 py-2 z-[1000]">
+              <div className="absolute top-full left-0 w-96 bg-white shadow-lg rounded-md mt-1 py-2 z-[1000]">
                 {Object.entries(groupedCategories).map(([gender, genderCategories]) => (
                   <div key={gender} className="relative">
                     <div className="px-4 py-2 font-semibold text-gray-800 hover:bg-gray-100 cursor-pointer">
                       {gender}
                     </div>
-                    <div className="pl-4">
+                    <div className="pl-4 grid grid-cols-2 gap-2">
                       {genderCategories.map((cat) => (
                         <Link
                           key={cat.id}
-                          to={`/shop/${gender.toLowerCase()}/${cat.categoryName}`}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          to={`/shop/${gender.toLowerCase()}/${cat.code.split(':')[1]}`}
+                          className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           onClick={() => setIsShopMenuOpen(false)}
                         >
-                          {cat.title}
+                          <img 
+                            src={cat.img}
+                            alt={cat.title}
+                            className="w-8 h-8 object-cover rounded"
+                          />
+                          <span>{cat.title}</span>
                         </Link>
                       ))}
                     </div>
