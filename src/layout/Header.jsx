@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'; // Redux store'dan veri almak için useSelector ve useDispatch'i içe aktar
-import { logoutUser } from '../actions/userActions'; // logoutUser  eylemini içe aktar
+import React, { useState, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../actions/userActions';
 
-// Ortak navbar linkleri
 const navLinks = [
   { id: 0, to: "/", text: "Home" },
   { id: 1, to: "/shop", text: "Shop" },
@@ -13,71 +12,83 @@ const navLinks = [
 ];
 
 function Header() {
-  const dispatch = useDispatch(); // Dispatch fonksiyonunu al
-  const user = useSelector((state) => state.client.user); // Kullanıcı bilgilerini Redux store'dan al
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.client.user);
+  const categories = useSelector((state) => state.product.categories);
+  const [isShopMenuOpen, setIsShopMenuOpen] = useState(false);
+
+  const groupedCategories = useMemo(() => {
+    if (!categories) return null;
+    return categories.reduce((acc, category) => {
+      const gender = category.code.startsWith('k:') ? 'Kadın' : 'Erkek';
+      if (!acc[gender]) acc[gender] = [];
+      acc[gender].push(category);
+      return acc;
+    }, {});
+  }, [categories]);
 
   const handleLogout = () => {
-    dispatch(logoutUser ()); // Kullanıcı çıkış işlemini gerçekleştir
+    dispatch(logoutUser());
+  };
+
+  const handleShopMouseEnter = () => {
+    setIsShopMenuOpen(true);
+  };
+
+  const handleShopMouseLeave = () => {
+    setIsShopMenuOpen(false);
   };
 
   return (
     <header className="font-bold pt-2">
-      {/* Mobil Navbar */}
-      <div className="md:hidden">
-        <div className="flex justify-between items-center">
-          <Link className="text-2xl" to="/">Bandage</Link>
-          <div className="flex items-center gap-5">
-            {user ? (
-              // Kullanıcı giriş yapmışsa
-              <div className="flex items-center gap-2">
-                <img 
-                  src={user.gravatarURL} 
-                  alt="Profil" 
-                  className="w-8 h-8 rounded-full"
-                />
-                <span className="text-sm">{user.name}</span>
-                <button onClick={handleLogout} className="text-sm text-red-500">Logout</button> {/* Çıkış butonu */}
-              </div>
-            ) : (
-              // Kullanıcı giriş yapmamışsa
-              <>
-                <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
-              </>
-            )}
-            <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
-            <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
-            <Link to="#"><i className="fa-solid fa-bars"></i></Link>
-          </div>
-        </div>
-
-        {/* Mobil Navigasyon Linkleri */}
-        <div>
-          <ul className="flex flex-col items-center text-gray">
-            {navLinks.map((link) => (
-              <li key={link.id} className="my-2">
-                <Link to={link.to}>{link.text}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* Web Navbar */}
       <div className="hidden md:flex justify-between items-center px-6">
         <Link className="text-2xl" to="/">Bandage</Link>
         <ul className="flex items-center gap-8 text-gray">
           {navLinks.map((link) => (
-            <li key={link.id}>
-              <Link to={link.to}>{link.text}</Link>
+            <li key={link.id} className="relative">
+              {link.text === "Shop" ? (
+                <div
+                  className="relative"
+                  onMouseEnter={handleShopMouseEnter}
+                  onMouseLeave={handleShopMouseLeave}
+                >
+                  <Link to={link.to}>{link.text}</Link>
+                  
+                  {isShopMenuOpen && groupedCategories && (
+                    <div className="absolute top-full left-0 w-48 bg-white shadow-lg rounded-md mt-2 py-2 z-50">
+                      {Object.entries(groupedCategories).map(([gender, categoryList]) => (
+                        <div key={gender}>
+                          <h3 className="px-4 py-2 font-semibold text-gray-800 capitalize">
+                            {gender}
+                          </h3>
+                          {categoryList.map((category) => (
+                            <Link
+                              key={category.id}
+                              to={`/shop/${gender.toLowerCase()}/${category.code.split(':')[1]}`}
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              onClick={() => setIsShopMenuOpen(false)}
+                            >
+                              {category.title}
+                            </Link>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link to={link.to}>{link.text}</Link>
+              )}
             </li>
           ))}
         </ul>
+        
         <div className="text-blue flex items-center gap-5">
-          {user ? ( // Kullanıcı bilgileri varsa göster
+          {user ? (
             <>
-              <img src={user.gravatarURL} alt="Profil Resmi" className="w-8 h-8 rounded-full" /> {/* Gravatar resmi */}
-              <span>{user.name}</span> {/* Kullanıcı adı */}
-              <button onClick={handleLogout} className="text-sm text-red-500">Logout</button> {/* Çıkış butonu */}
+              <img src={user.gravatarURL} alt="Profil Resmi" className="w-8 h-8 rounded-full" />
+              <span>{user.name}</span>
+              <button onClick={handleLogout} className="text-sm text-red-500">Logout</button>
             </>
           ) : (
             <>
@@ -85,7 +96,7 @@ function Header() {
             </>
           )}
           <Link to="#"><i className="fa-regular fa-user"></i></Link>
-          <Link to="#"><i className="fa-solid fa-magn ifying-glass"></i></Link>
+          <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
           <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
         </div>
       </div>

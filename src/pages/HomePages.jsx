@@ -4,6 +4,7 @@ import Brand from '@/components/ui/Brand';
 import Slider from '@/components/ui/Slider';
 import BestsellerSection from  '@/components/ui/BestsellerSection';
 import { Button } from '@/components/ui/Button';
+import PopularCategories from '@/components/ui/PopularCategories';
 
 
 const products = [
@@ -91,6 +92,11 @@ function HomePages() {
         <div className="my-16 space-y-16">
           {/* Top Products */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+             {/* Popüler Kategoriler Bölümü - YENİ */}
+        <div className="my-16">
+          <h2 className="text-2xl font-bold text-center mb-8">Popular Categories</h2>
+          <PopularCategories />
+        </div>
             {topProducts.map((product, index) => (
               <ProductCard key={index} {...product} />
             ))}

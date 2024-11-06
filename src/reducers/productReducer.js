@@ -1,5 +1,6 @@
 const initialState = {
-  categories: [],
+  categories: null, // categories'i null olarak tanımlandıgında Bileşenler, categories değerinin henüz var olmadığını anlayabildi. Bu sayede, categories null iken alternatif içerik gösterme veya işlem yapmama gibi kontroller ekleyebildiniz.
+  // Boş array de hata vermesinin sebebi: Bileşenler, categories değerinin var olduğunu ve bir dizi olduğunu varsayarak işlem yapmaya çalıştı.Ancak, API'den veri henüz gelmediği için, bu boş dizi üzerinde map işlemi yapmak istediğinizde, hiçbir eleman olmadığı için beklenmeyen sonuçlar üretti.
   productList: [],
   total: 0,
   limit: 25,
@@ -19,6 +20,8 @@ const SET_FILTER = 'SET_FILTER';
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CATEGORIES:
+      return { ...state, categories: action.payload };
+      console.log('Setting categories:', action.payload); // Gelen veriyi kontrol et.
       return { ...state, categories: action.payload };
     case SET_PRODUCT_LIST:
       return { ...state, productList: action.payload };
