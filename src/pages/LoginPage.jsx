@@ -3,30 +3,32 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { loginUser } from "../actions/userActions.js"; // Giriş işlemi için thunk action
-import { useNavigate } from 'react-router-dom'; // useNavigate'i içe aktar
+import { loginUser } from "../actions/userActions.js";
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/Button.jsx';
 
 function LoginForm() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // yönlendirme için useNavigate'i kullan
+  const navigate = useNavigate();
+  const location = useLocation(); // useLocation hook'unu bileşen içinde çağırın
 
   const onSubmit = async (data) => {
     try {
       const response = await dispatch(loginUser(data));
       if (response.success) {
         if (data.rememberMe) {
-          localStorage.setItem('token', response.token);
+          localStorage.setItem('rememberMe', 'true');
+        } else {
+          localStorage.removeItem('rememberMe');
         }
-        // Sadece bir kez dispatch yapın
-        navigate(-1);
+        const from = location.state?.from || '/';
+        navigate(from);
       }
     } catch (error) {
       toast.error('Login failed');
     }
   };
-  
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
@@ -63,11 +65,8 @@ function LoginForm() {
           type="submit" 
           disabled={isSubmitting}
           className="px-5 py-5"
-        
-
         >
           {isSubmitting ? 'Giriş Yapılıyor...' : 'Giriş Yap'}
-          
         </Button>
       </form>
     </div>
