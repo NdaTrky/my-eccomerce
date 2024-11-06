@@ -52,7 +52,7 @@ export const fetchProducts = () => async (dispatch) => {
 
     try {
         // Tüm ürünleri almak için limit ve offset kullanımı
-        const limit = 100; // Veya ihtiyacınıza göre ayarlayın
+        const limit = 20; // Veya ihtiyacınıza göre ayarlayın
         const response = await api.get('/products', {
             params: {
                 limit,

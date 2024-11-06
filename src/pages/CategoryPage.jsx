@@ -12,34 +12,60 @@ function CategoryPage() {
   const fetchState = useSelector(state => state.product.fetchState);
 
   useEffect(() => {
-    console.log('CategoryPage mounted. FetchState:', fetchState);
-    console.log('URL Parameters:', { gender, category });
-    
     if (products.length === 0 && fetchState !== 'FETCHING') {
-      console.log('Dispatching fetchProducts');
       dispatch(fetchProducts());
     }
-  }, [dispatch, fetchState, products.length, gender, category]);
+  }, [dispatch, fetchState, products.length]);
 
+  // Debug için kategori kodunu ve bulunan kategoriyi kontrol edelim
   const categoryInfo = useMemo(() => {
     const categoryCode = `${gender.charAt(0)}:${category}`;
-    return categories.find(cat => cat.code === categoryCode);
+    console.log('Searching for category code:', categoryCode);
+    
+    const foundCategory = categories.find(cat => {
+      //!console.log('Checking category:', cat.code, 'against:', categoryCode);
+      return cat.code === categoryCode;
+    });
+    
+    console.log('Found category:', foundCategory);
+    return foundCategory;
   }, [categories, gender, category]);
 
+  // Debug için filtreleme işlemini kontrol edelim
   const filteredProducts = useMemo(() => {
-    if (!categoryInfo) return [];
-    return products.filter(product => product && product.category_id === categoryInfo.id);
+    if (!categoryInfo) {
+      console.log('No category info found');
+      return [];
+    }
+
+    console.log('Filtering products with category ID:', categoryInfo.id);
+    
+    return products.filter(product => {
+      console.log('Product:', product.id, 'Category ID:', product.category_id);
+      return product && product.category_id === categoryInfo.id;
+    });
   }, [products, categoryInfo]);
 
+  // Debug bilgilerini görüntüleyelim
   useEffect(() => {
-    console.log('Filtered Products:', filteredProducts);
-    console.log('Category Info:', categoryInfo);
-  }, [filteredProducts, categoryInfo]);
+    console.log('Current State:', {
+      gender,
+      category,
+      categoryInfo,
+      totalProducts: products.length,
+      filteredCount: filteredProducts.length,
+      categories: categories.map(c => ({
+        code: c.code,
+        id: c.id,
+        title: c.title
+      }))
+    });
+  }, [gender, category, categoryInfo, products, filteredProducts, categories]);
 
   if (fetchState === 'FETCHING') {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="text-xl font-semibold">Ürünler Yükleniyor...</div>
+        <div className="text-xl font-semibold">Loading...</div>
       </div>
     );
   }
@@ -58,12 +84,26 @@ function CategoryPage() {
           <p className="text-sm text-gray-500 mt-2">
             (Toplam Ürün Sayısı: {products.length})
           </p>
+          {/* Debug bilgilerini göster */}
+          <div className="mt-4 p-4 bg-gray-100 rounded-lg text-left">
+            <p>Category Code: {`${gender.charAt(0)}:${category}`}</p>
+            <p>Category ID: {categoryInfo.id}</p>
+            <p>Available Categories:</p>
+            <ul className="list-disc pl-5">
+              {categories.map(cat => (
+                <li key={cat.id}>
+                  {cat.code} (ID: {cat.id}) - {cat.title}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
+              id={product.id}
               image={product.images?.[0]?.url || '/placeholder.png'}
               title={product.name || 'İsimsiz Ürün'}
               description={product.description || ''}
@@ -71,17 +111,6 @@ function CategoryPage() {
               newPrice={product.price || ''}
             />
           ))}
-        </div>
-      )}
-
-      {process.env.NODE_ENV === 'development' && (
-        <div className="mt-8 p-4 bg-gray-100 rounded-lg">
-          <h3 className="font-bold mb-2">Debug Bilgileri:</h3>
-          <p>Gender: {gender}</p>
-          <p>Category: {category}</p>
-          <p>Category ID: {categoryInfo?.id}</p>
-          <p>Total Products: {products.length}</p>
-          <p>Filtered Products: {filteredProducts.length}</p>
         </div>
       )}
     </div>
