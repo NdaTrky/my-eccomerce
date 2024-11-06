@@ -1,15 +1,45 @@
 import { Button } from '@/components/ui/Button';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { shops } from './ShopPages';
 
 function ProductDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const user = useSelector((state) => state.client.user);
   const product = shops.find(shop => shop.id === parseInt(id));
 
   if (!product) {
     return <div>Ürün bulunamadı</div>;
   }
+
+  // Kullanıcı girişi gerektiren işlemler için kontrol fonksiyonu
+  const handleAuthRequired = (action) => {
+    if (!user) {
+      // Kullanıcı giriş yapmamışsa, login sayfasına yönlendir
+      navigate('/login', { state: { from: location.pathname } });
+    } else {
+      // Kullanıcı giriş yapmışsa, ilgili işlemi gerçekleştir
+      switch (action) {
+        case 'select':
+          console.log('Ürün seçenekleri seçildi');
+          break;
+        case 'favorite':
+          console.log('Favorilere eklendi');
+          break;
+        case 'cart':
+          console.log('Sepete eklendi');
+          break;
+        case 'view':
+          console.log('Ürün görüntülendi');
+          break;
+        default:
+          break;
+      }
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4">
@@ -91,18 +121,43 @@ function ProductDetail() {
 
           {/* Butonlar */}
           <div className="flex gap-4">
-            <Button size="lg" variant="secondary" className="flex-1">
-              Select Options
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              className="flex-1"
+              onClick={() => handleAuthRequired('select')}
+            >
+              {user ? "Select Options" : "Login / Register"}
             </Button>
-            <Button size="lg" variant="outline" className="p-3 min-w-[48px]">
-              <i className="fas fa-heart"></i>
-            </Button>
-            <Button size="lg" variant="outline" className="p-3 min-w-[48px]">
-              <i className="fas fa-shopping-cart"></i>
-            </Button>
-            <Button size="lg" variant="outline" className="p-3 min-w-[48px]">
-              <i className="fas fa-eye"></i>
-            </Button>
+            
+            {user && (
+              <>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="p-3 min-w-[48px]"
+                  onClick={() => handleAuthRequired('favorite')}
+                >
+                  <i className="fas fa-heart"></i>
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="p-3 min-w-[48px]"
+                  onClick={() => handleAuthRequired('cart')}
+                >
+                  <i className="fas fa-shopping-cart"></i>
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="p-3 min-w-[48px]"
+                  onClick={() => handleAuthRequired('view')}
+                >
+                  <i className="fas fa-eye"></i>
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>

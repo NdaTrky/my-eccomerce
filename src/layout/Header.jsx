@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { useSelector } from 'react-redux'; // Redux store'dan veri almak için useSelector'ı içe aktar
+import { useSelector, useDispatch } from 'react-redux'; // Redux store'dan veri almak için useSelector ve useDispatch'i içe aktar
+import { logoutUser } from '../actions/userActions'; // logoutUser  eylemini içe aktar
 
 // Ortak navbar linkleri
 const navLinks = [
@@ -12,37 +13,42 @@ const navLinks = [
 ];
 
 function Header() {
+  const dispatch = useDispatch(); // Dispatch fonksiyonunu al
   const user = useSelector((state) => state.client.user); // Kullanıcı bilgilerini Redux store'dan al
+
+  const handleLogout = () => {
+    dispatch(logoutUser ()); // Kullanıcı çıkış işlemini gerçekleştir
+  };
 
   return (
     <header className="font-bold pt-2">
-     {/* Mobil Navbar */}
-<div className="md:hidden">
-  <div className="flex justify-between items-center">
-    <Link className="text-2xl" to="/">Bandage</Link>
-    <div className="flex items-center gap-5">
-      {/* Bu kısmı değiştirin */}
-      {user ? (
-        // Kullanıcı giriş yapmışsa
-        <div className="flex items-center gap-2">
-          <img 
-            src={user.gravatarURL} 
-            alt="Profil" 
-            className="w-8 h-8 rounded-full"
-          />
-          <span className="text-sm">{user.name}</span>
+      {/* Mobil Navbar */}
+      <div className="md:hidden">
+        <div className="flex justify-between items-center">
+          <Link className="text-2xl" to="/">Bandage</Link>
+          <div className="flex items-center gap-5">
+            {user ? (
+              // Kullanıcı giriş yapmışsa
+              <div className="flex items-center gap-2">
+                <img 
+                  src={user.gravatarURL} 
+                  alt="Profil" 
+                  className="w-8 h-8 rounded-full"
+                />
+                <span className="text-sm">{user.name}</span>
+                <button onClick={handleLogout} className="text-sm text-red-500">Logout</button> {/* Çıkış butonu */}
+              </div>
+            ) : (
+              // Kullanıcı giriş yapmamışsa
+              <>
+                <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
+              </>
+            )}
+            <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
+            <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
+            <Link to="#"><i className="fa-solid fa-bars"></i></Link>
+          </div>
         </div>
-      ) : (
-        // Kullanıcı giriş yapmamışsa
-        <>
-          <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
-        </>
-      )}
-      <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
-      <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
-      <Link to="#"><i className="fa-solid fa-bars"></i></Link>
-    </div>
-  </div>
 
         {/* Mobil Navigasyon Linkleri */}
         <div>
@@ -71,6 +77,7 @@ function Header() {
             <>
               <img src={user.gravatarURL} alt="Profil Resmi" className="w-8 h-8 rounded-full" /> {/* Gravatar resmi */}
               <span>{user.name}</span> {/* Kullanıcı adı */}
+              <button onClick={handleLogout} className="text-sm text-red-500">Logout</button> {/* Çıkış butonu */}
             </>
           ) : (
             <>
@@ -78,7 +85,7 @@ function Header() {
             </>
           )}
           <Link to="#"><i className="fa-regular fa-user"></i></Link>
-          <Link to="#"><i className="fa-solid fa-magnifying-glass"></i></Link>
+          <Link to="#"><i className="fa-solid fa-magn ifying-glass"></i></Link>
           <Link to="#"><i className="fa-solid fa-cart-shopping"></i></Link>
         </div>
       </div>

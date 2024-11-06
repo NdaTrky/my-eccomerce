@@ -14,9 +14,23 @@ import ContactPage from "./pages/ContactPage";
 import TeamPage from "./pages/TeamPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { checkAndVerifyToken } from "./utils/auth";
+
 
 //TODO : PagesContainer kullanımı olmamalı. 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const verifyToken = async () => {
+      await checkAndVerifyToken(dispatch);
+    };
+    verifyToken();
+  }, [dispatch]);
+
+  
   register();
   return (
     <Router>
