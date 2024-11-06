@@ -15,26 +15,34 @@ import TeamPage from "./pages/TeamPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react"; // useState ekleyin
+import { useEffect, useState } from "react";
 import { checkAndVerifyToken } from "./utils/auth";
 import CategoryPage from "./pages/CategoryPage";
-import { fetchCategories } from "./actions/productActions"; 
+import { fetchCategories, fetchProducts } from "./actions/productActions"; // fetchProducts'ı da import ediyoruz
 
 function App() {
   const dispatch = useDispatch();
   const fetchState = useSelector(state => state.product?.fetchState);
-  const [isInitialized, setIsInitialized] = useState(false); // Yeni state
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     const initializeApp = async () => {
       try {
+        // Token kontrolü
         await checkAndVerifyToken(dispatch);
-        await dispatch(fetchCategories());
-        console.log('Kategoriler yükleme başlatıldı');
+        
+        // Kategorileri ve ürünleri paralel olarak yükle
+        console.log('Veri yükleme başlatıldı');
+        await Promise.all([
+          dispatch(fetchCategories()),
+          dispatch(fetchProducts())
+        ]);
+        
+        console.log('Kategoriler ve ürünler başarıyla yüklendi');
       } catch (error) {
         console.error('Uygulama başlatma hatası:', error);
       } finally {
-        setIsInitialized(true); // Başlatma işlemi tamamlandı
+        setIsInitialized(true);
       }
     };
 
@@ -46,7 +54,11 @@ function App() {
   
   // Başlatma işlemi tamamlanana kadar yükleniyor göster
   if (!isInitialized || fetchState === 'FETCHING') {
-    return <div>Yükleniyor...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-xl font-semibold">Yükleniyor...</div>
+      </div>
+    );
   }
 
   return (
