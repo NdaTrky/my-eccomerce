@@ -32,7 +32,7 @@ function PopularCategories() {
         <Link 
           key={category.id}
           to={`/shop/${category.gender.toLowerCase()}/${category.code}`}
-          className="relative group overflow-hidden rounded-lg"
+        className="relative group overflow-hidden rounded-lg"
         >
           <img 
             src={category.image} 

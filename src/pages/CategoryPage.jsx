@@ -42,7 +42,7 @@ function CategoryPage() {
     
     return products.filter(product => {
       console.log('Product:', product.id, 'Category ID:', product.category_id);
-      return product && product.category_id === categoryInfo.id;
+      return products.filter(product => product.category_id === categoryInfo.id);
     });
   }, [products, categoryInfo]);
 
