@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { logoutUser } from '../actions/userActions';
+import { logoutUser  } from '../actions/userActions';
 
 function Header() {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ function Header() {
   }, [categories]);
 
   const handleLogout = () => {
-    dispatch(logoutUser());
+    dispatch(logoutUser ());
   };
 
   return (

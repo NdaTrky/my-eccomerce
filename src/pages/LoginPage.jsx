@@ -11,7 +11,7 @@ function LoginForm() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation(); // useLocation hook'unu bileşen içinde çağırın
+  const location = useLocation(); // useLocation hook'unu bileşen içinde çağır.
 
   const onSubmit = async (data) => {
     try {

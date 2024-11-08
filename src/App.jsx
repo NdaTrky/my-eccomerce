@@ -68,6 +68,7 @@ function App() {
         <Header />
         <main className="flex-grow">
           <Routes>
+          <Route path="/shop/:gender/:category" element={<CategoryPage />} />
             <Route path="/" element={<HomePages />} />
             <Route path="/shop" element={<ShopPages />} />
             <Route path="/contact" element={<ContactPage />} />
@@ -76,8 +77,7 @@ function App() {
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/shop/:gender/:category" element={<CategoryPage />} />
-          </Routes>
+           </Routes>
         </main>
         <Brand/>
         <Footer />
