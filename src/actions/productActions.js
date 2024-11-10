@@ -38,7 +38,7 @@ export const fetchCategories = () => async (dispatch) => {
     dispatch(setFetchState('FETCHING'));
     try {
         const response = await api.get('/categories');
-        dispatch(setCategories(response.data));
+        dispatch(setCategories(response.data)); // Kategorileri global state'e kaydet
         dispatch(setFetchState('FETCHED'));
     } catch (error) {
         console.error('Error fetching categories:', error);

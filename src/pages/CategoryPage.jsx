@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductCard from '@/components/ui/ProductCard';
 import { fetchProducts } from '../actions/productActions';
+import PopularCategories from '@/components/ui/PopularCategories';
 
 function CategoryPage() {
   const { gender, category } = useParams();
@@ -72,6 +73,7 @@ function CategoryPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <PopularCategories/>
       <h1 className="text-3xl font-bold mb-8">
         {gender.charAt(0).toUpperCase() + gender.slice(1)} {category.charAt(0).toUpperCase() + category.slice(1)}
       </h1>

@@ -10,6 +10,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import PopularCategories from '@/components/ui/PopularCategories';
 
 export const shops = [
   {
@@ -153,6 +154,7 @@ const shopCategories = [
 function ShopPages() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <PopularCategories />
     {/* Yeni Kart Düzeni (Sayfanın Üst Kısmında) */}
     <div className="mb-8">
       <h1 className="text-2xl font-bold mb-4">Shop</h1>
